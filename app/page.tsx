@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import PriceTracker from '../components/Pricetracker';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import PriceTracker from './components/Pricetracker';
 
 const Home: React.FC = () => {
-  return (
+  return ( 
     <div>
       <Header />
       <main>
