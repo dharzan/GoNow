@@ -2,17 +2,15 @@
 "use client"
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-// Define the type for your context
 interface AuthContextType {
-  user: any; // or a more specific type, e.g., `User | null`
-  login: (userData: any) => void; // Adjust the type for userData
+  user: any;
+  login: (userData: any) => void; 
   logout: () => void;
 }
 
-// Initialize context with `AuthContextType | null` for TypeScript safety
 const AuthContext = createContext<AuthContextType | null>(null);
 
-// Hook to use the AuthContext
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -21,9 +19,9 @@ export const useAuth = () => {
   return context;
 };
 
-// AuthProvider component
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<any>(null); // Adjust type as needed
+  const [user, setUser] = useState<any>(null); 
 
   const login = (userData: any) => {
     setUser(userData);

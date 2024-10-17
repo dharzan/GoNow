@@ -7,7 +7,6 @@ const Settings: React.FC = () => {
     <div>
       <Header />
       <main>
-        <h1>Settings</h1>
         <p>Update your preferences here.</p>
       </main>
       <Footer />
