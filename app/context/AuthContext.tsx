@@ -1,35 +1,41 @@
-"use client"
-import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-interface AuthContextProps {
-  user: string | null;
-  login: (username: string) => void;
+"use client"
+import { createContext, useContext, useState, ReactNode } from 'react';
+
+// Define the type for your context
+interface AuthContextType {
+  user: any; // or a more specific type, e.g., `User | null`
+  login: (userData: any) => void; // Adjust the type for userData
   logout: () => void;
 }
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
+// Initialize context with `AuthContextType | null` for TypeScript safety
+const AuthContext = createContext<AuthContextType | null>(null);
 
-const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+// Hook to use the AuthContext
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<string | null>(null);
+// AuthProvider component
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<any>(null); // Adjust type as needed
 
-  const login = (username: string) => setUser(username);
-  const logout = () => setUser(null);
+  const login = (userData: any) => {
+    setUser(userData);
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
 };
