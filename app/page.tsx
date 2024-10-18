@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import PriceTracker from './components/PriceTracker';
+import PriceTracker from './components/Pricetracker';
 
 // Styled Components
 const Container = styled.div`
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
       <Header />
       <Main>
         <Title>GoNow!</Title>
-        <PriceTracker location="New York" />
+        <PriceTracker location="NewYork" />
       </Main>
       <Footer />
     </Container>
