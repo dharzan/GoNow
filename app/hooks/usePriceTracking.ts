@@ -14,6 +14,7 @@ const usePriceTracking = (location: string): UsePriceTrackingReturn => {
     const fetchPrice = async () => {
       setLoading(true);
       try {
+        console.log(location);
         const response = await fetch(`/api/prices/${location}`);
         const data = await response.json();
         setPrice(data.price);
