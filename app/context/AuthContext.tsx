@@ -1,15 +1,20 @@
-
-"use client"
+"use client";
 import { createContext, useContext, useState, ReactNode } from 'react';
 
+// Define the shape of the user object
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
 interface AuthContextType {
-  user: any;
-  login: (userData: any) => void; 
+  user: User | null;
+  login: (userData: User) => void;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
-
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -19,11 +24,10 @@ export const useAuth = () => {
   return context;
 };
 
-
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<any>(null); 
+  const [user, setUser] = useState<User | null>(null);
 
-  const login = (userData: any) => {
+  const login = (userData: User) => {
     setUser(userData);
   };
 
